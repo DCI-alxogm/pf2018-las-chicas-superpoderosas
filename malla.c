@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<math.h>
 
 int main()
 {
@@ -7,9 +8,12 @@ int main()
 	int i,j,k,x,n=0;
 	float a=1,s=1,d=1,w=1;	
 	FILE *fp;
-	printf("¿De qué tamaño quieres la matriz?\n");
+
+
+	printf("Define el tamaño de la matriz\n");
 	scanf("%i",&x);
 	n=x*x;
+
 	T=(float**)malloc(x*sizeof(int*));
 	fp=fopen("data.txt","w");
 	for(i=0;i<=n;i++){                    
