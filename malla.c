@@ -7,6 +7,7 @@ int main()
 	float **T;
 	int i,j,k,x,n=0;
 	float a=1,s=1,d=1,w=1;	
+
 	FILE *fp;
 
 
