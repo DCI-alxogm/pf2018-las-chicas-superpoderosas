@@ -1,0 +1,4 @@
+/*Parámetros que vamos a utilizar en el programa*/
+
+e=1
+rho=1
