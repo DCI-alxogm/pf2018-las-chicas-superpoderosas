@@ -1,4 +1,4 @@
 /*Parámetros que vamos a utilizar en el programa*/
-
-e=1
-rho=1
+posiciones y velocidades,e,rho.
+masa	tiempo(años)	h	x	y	z	vx	vy	vz	e	rho
+5	1		0.001	0	0	0	1	2	3	1	1
