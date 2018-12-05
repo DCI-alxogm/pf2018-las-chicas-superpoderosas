@@ -2,11 +2,13 @@
 
 #include<stdio.h>
 #include<stdlib.h>
-#include<math.h>
 
 
 
-int proyecto3(){
+
+void proyecto3();
+int main(){ //Se le da inicio al programa
+
 	proyecto3();
 	return 0;
 }

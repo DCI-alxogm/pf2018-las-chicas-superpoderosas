@@ -4,10 +4,15 @@
 #include<stdlib.h>
 #include<math.h>
 
-void proyecto3(){
+int proyecto3(){ //Se la da inicio al programa, pero en lugar de usar la funcion main, utilizamos el nombre del primer archivo
+
+
+//Declaración de variables
 	float pi=3.1416;
 	float masas,d,e=1,fuerza,rho;//d es la distancia entre dos puntos y es un puntero ya que es un valor diferente para cada partícula
 	float G=4*(pow(pi,2));
+
+
         FILE *datos;
         FILE *parametros;
 
