@@ -4,8 +4,6 @@
 
 int main(){
    
-
-
 	float e,w=1;
 	int N,n,i,j;
 	float left,right,up,down,t;
