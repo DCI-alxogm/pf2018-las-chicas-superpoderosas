@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
-void malla(){
+
+int main(){
 	float h,m;
 	int i,xi,yi,zi,n=0;
 	int *x= (int*)malloc(n*sizeof(float));
