@@ -4,7 +4,7 @@
 #include<stdlib.h>
 #include<math.h>
 
-int proyecto3(){ //Se la da inicio al programa, pero en lugar de usar la funcion main, utilizamos el nombre del primer archivo
+void proyecto3(){ //Se la da inicio al programa, pero en lugar de usar la funcion main, utilizamos el nombre del primer archivo
 
 
 //Declaración de variables
@@ -28,3 +28,5 @@ pow(d[],7))*j
 fuerzaz[]=4*e((12*(pow(rho,12))/(pow(d[],13))-((6*(pow(rho,6)/(
 pow(d[],7))*k
 }
+
+

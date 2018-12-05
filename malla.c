@@ -4,7 +4,7 @@
 
 int main()
 {
-	float **T;
+	double **T;
 	int i,j,k,x,n=0;
 	float a=1,s=1,d=1,w=1;	
         FILE *fp;
@@ -13,13 +13,14 @@ int main()
 	printf("Define el tamaño de la matriz\n");
 	scanf("%i",&x);
 	n=x*x;
-
-	T=(float**)malloc(x*sizeof(int*));
+	
+	T=(double**)malloc(x*sizeof(float*));
 	fp=fopen("data.txt","w");
-	for(i=0;i<=n;i++){                    
-	T[i]=(float*)malloc(x*sizeof(int));}
+	for(i=0;i<=x;i++){                    
+		T[i]=(double*)malloc(x*sizeof(float));
+		}
 	for(i=0;i<x;i++)
-	{           
+		{           
 		for(j=0;j<x;j++){ 
 				if(i==0){
 				T[i][j]=a;
