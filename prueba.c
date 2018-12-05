@@ -17,11 +17,12 @@ int main(){
 
 
 	first=fopen("datosprueba.txt","r");
-	fscanf(first,"%f %f %f %f %f %i",&left,&right,&up,&down,&e,&n);
+	fscanf(first,"%f %f %f %f %f ",&left,&right,&up,&down,&e);
 
 	fclose(first);
 //T es la matriz
-
+	printf("Dame el valor del tamaño de la matriz: \n");
+	scanf("%i",&n);
 	double **T = (double**)malloc(n*sizeof(float*));
 
 	for(i=0;i<=n;i++){
