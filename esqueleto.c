@@ -3,7 +3,7 @@
 int main(){
 //declaracion de variables
 float G=43000,h;
-int n=10000,i,o;
+int n=10000,i,o,t;
 double a,b,c,d,e,f,m[n];
 double x[n],y[n],z[n],vx[n],vy[n],vz[n],r;
 FILE *inicial;
@@ -19,6 +19,7 @@ printf("Hola, este programa calcula la orbita de los planetas entorno al sol\n")
 	//}
 	fclose(inicial);
 	}
+     //se indican que los valores escaneados del archivo de texto son las posiciones y velocidades iniciales de los planetas en el cubo.
 	x[0]=x0;
 	y[0]=y0;
 	z[0]=z0;
@@ -26,27 +27,44 @@ printf("Hola, este programa calcula la orbita de los planetas entorno al sol\n")
 	vy[0]=vy0;
 	vz[0]=vz0;
 	
-	printf("datos son: %lf",m[n]);
-	//se asignan los valores a la ṕosición 0 de nuestros arreglos
-	/*x[0]=a; 
-	y[0]=b;
-	z[0]=c;
-	vx[0]=d;
-	vy[0]=e;
-	vz[0]=f;
+	
 	resultados=fopen("resultadosmercurio.txt","w"); //se abre el archivo donde se van a guardar los resultados
-		for(i=1;i<=10000;i++) //se van a hacer 1000 calculos ya que nuestro paso es de 0.001 y el valor de nuestro año es 1
+		for (j=0;j<n;j++)
+{
+    for(i=0;i<n;i++)
 	{
+if 
+
+	 //Hacemos las operaciones pertinentes para relación entre planetas con cada uno de los ejes
+	fx[j]= ((G*m*m)) / pow(fabs(rx[i]-rx[i+1]),3) *fabs (rx[i]-rx[i+1]) +fx[j]; //trabajando con el eje x
+	
+	fy[j]= ((G*m*m)) / pow(fabs(ry[i]-ry[i+1]),3) *fabs (ry[i]-ry[i+1]) +fy[j]; //trabajando con el eje y
+
+	fz[j]= ((G*m*m)) / pow(fabs(rz[i]-rz[i+1]),3) *fabs (rz[i]-rz[i+1]) +fz[j];  //trabajando con el eje z
+
+	//Se imprimen los resultados en otro archivo de texto.
+	//fprintf(resultados,"%lf\t %lf\t %lf\t",x[i],y[i],z[i],h);
+
+
+
+
+
+
+		for(i=1;i<=n;i++) //se van a hacer 1000 calculos ya que nuestro paso es de 0.001 y el valor de nuestro año es 1
+	{
+				for(j=1;j<=n;j++){ //se usan las fórmulas para poder calcular las nuevas posiciones y las nuevas velocidades 
+					x0[i+h]=x0[i]+h*vx0[i]+1/2*fx*(h*h);
+					vx0[i+h]=vx0[i]+1/2*(fx[i+h])*h;
+				
+					y0[i+h]=y0[i]+h*vy0[i]+1/2*fy*(h*h);
+					vy0[i+h]=vy0[i]+1/2*(fy[i+h])*h;
+					
+					z0[i+h]=z0[i]+h*vz0[i]+1/2*fz*(h*h);
+					vz0[i+h]=vz0[i]+1/2*(fz[i+h])*h;
 	  //se calcula el radio con los valores de x,y,z de cada planeta, en este caso los de mercurio
 	    //se realizan operaciones, se pone i-1 porque tenemos que empezar con los valores iniciados dados en nuestros archivos de texto de los planetas
-	    x[i]=x[i-1]+vx[i-1]*h; 
-	    y[i]=y[i-1]+vy[i-1]*h;
-	    z[i]=z[i-1]+vz[i-1]*h;
-  	    r=sqrt(pow(x[i-1],2)+pow(y[i-1],2)+pow(z[i-1],2));	//se calcula el radio cada que cambia x,y,z     
-	    vx[i]=vx[i-1]-h*((G*x[i-1])/pow(r,3));
-	    vy[i]=vy[i-1]-h*((G*y[i-1])/pow(r,3));
-	    vz[i]=vz[i-1]-h*((G*z[i-1])/pow(r,3));
-	    fprintf(resultados," %lf\t %lf\t %lf\t %lf\t %lf\t %lf\n",x[i],y[i],z[i],vx[i],vy[i],vz[i]);//Los resultados se van guardando en cada arreglo
+	   
+	    fprintf(resultados," %lf\t %lf\t %lf\t",x[i],y[i],z[i]);//Los resultados se van guardando en cada arreglo
 	}
 	    fclose(resultados); //se cierra la variable de los resultados
 //termina nuestro primer if y continuan los demas en caso de que el numero no sea 0, se repiten las mismas acciones en cada if
