@@ -7,10 +7,8 @@
 
 
 void proyecto();
-void variables();
 int main(){ //Se le da inicio al programa
 
-	variables();
-	proyecto3();
+	proyecto();
 	return 0;
 }
