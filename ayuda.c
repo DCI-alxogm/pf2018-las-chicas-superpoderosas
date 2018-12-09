@@ -4,8 +4,9 @@
 int main(){
 float G=430000,h,F;
 int n=10000,i,o;
-double a,b,c,d,e,f,Jx[n],Jy[n],Jz[n],Jvx[n],Jvy[n],Jvz[n],Jh[n],N[n],P[n];
+double a,b,c,d,e,f;
 double dx,dy,dz,r[n];
+double Jx[n],Jy[n],Jz[n],Jvx[n],Jvy[n],Jvz[n],Jh[n],N[n],P[n];
 double Tx[n],Ty[n],Tz[n],Tvx[n],Tvy[n],Tvz[n],Th[n];
 double Vx[n],Vy[n],Vz[n],Vvx[n],Vvy[n],Vvz[n],Vh[n];
 double Max[n],May[n],Maz[n],Mavx[n],Mavy[n],Mavz[n],Mah[n];
@@ -13,7 +14,8 @@ double Nx[n],Ny[n],Nz[n],Nvx[n],Nvy[n],Nvz[n],Nh[n];
 double Px[n],Py[n],Pz[n],Pvx[n],Pvy[n],Pvz[n],Ph[n];
 double Sx[n],Sy[n],Sz[n],Svx[n],Svy[n],Svz[n],Sh[n];
 double Ux[n],Uy[n],Uz[n],Uvx[n],Uvy[n],Uvz[n],Uh[n];
-/*double Vx[n],Vy[n],Vz[n],Vvx[n],Vvy[n],Vvz[n],Vh[n];*/
+double Mx[n],My[n],Mz[n],Mvx[n],Mvy[n],Mvz[n],Mh[n];
+
 FILE *planeta;
 FILE *resultados;
 printf("Hola, este programa calcula la orbita de diferentes planetas entorno al sol\n");
@@ -113,29 +115,29 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	Uvz[0]=f;
 	Uh[0]=h;
 
-	/*planeta=fopen("venus.txt","r"); 
+	planeta=fopen("mercurio.txt","r"); 
 	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
 	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);//se guardan los datos en las variables
 	fclose(planeta);
-	Vx[0]=a;
-	Vy[0]=b;
-	Vz[0]=c;
-	Vvx[0]=d;
-	Vvy[0]=e;
-	Vvz[0]=f;
-	Vh[0]=h;*/
+	Mx[0]=a;
+	My[0]=b;
+	Mz[0]=c;
+	Mvx[0]=d;
+	Mvy[0]=e;
+	Mvz[0]=f;
+	Mh[0]=h;
 
 	resultados=fopen("resultadosjupiter.txt","w"); 
-		for(i=1;i<=1000;i++) 
+		for(i=1;i<=10000;i++) 
 	{	
 
 	   
 	    dx=Jx[i-1]-Tx[i-1];
 	    dy=Jy[i-1]-Ty[i-1];
 	    dz=Jz[i-1]-Tz[i-1];
- 	    Jx[i]=dx+Jvx[i-1]*h; 
-	    Jy[i]=dy+Jvy[i-1]*h;
-	    Jz[i]=dz+Jvz[i-1]*h;
+ 	    Jx[i]=dx+Jvx[i-1]*Jh[0]; 
+	    Jy[i]=dy+Jvy[i-1]*Jh[0];
+	    Jz[i]=dz+Jvz[i-1]*Jh[0];
   	    r[i]=sqrt((dx,2)+pow(dy,2)+pow(dz,2));	//se calcula el radio cada que cambia x,y,z     
 	    Jvx[i]=Jvx[i-1]-h*((G*dx)/pow(r[i],3));
 	    Jvy[i]=Jvy[i-1]-h*((G*dy)/pow(r[i],3));
@@ -145,16 +147,16 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	}
 	    fclose(resultados);
 	resultados=fopen("resultadostierra.txt","w");
-	for(i=1;i<=1000;i++) 
+	for(i=1;i<=10000;i++) 
 	{	
 
 	   
 	    dx=Tx[i-1]-Jx[i-1];
 	    dy=Ty[i-1]-Jy[i-1];
 	    dz=Tz[i-1]-Jz[i-1];
- 	    Tx[i]=dx+Tvx[i-1]*h; 
-	    Ty[i]=dy+Tvy[i-1]*h;
-	    Tz[i]=dz+Tvz[i-1]*h;
+ 	    Tx[i]=dx+Tvx[i-1]*Th[0]; 
+	    Ty[i]=dy+Tvy[i-1]*Th[0];
+	    Tz[i]=dz+Tvz[i-1]*Th[0];
   	    r[i]=sqrt((dx,2)+pow(dy,2)+pow(dz,2));	//se calcula el radio cada que cambia x,y,z     
 	    Tvx[i]=Tvx[i-1]-h*((G*dx)/pow(r[i],3));
 	    Tvy[i]=Tvy[i-1]-h*((G*dy)/pow(r[i],3));
