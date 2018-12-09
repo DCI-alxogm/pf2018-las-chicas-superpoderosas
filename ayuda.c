@@ -2,7 +2,7 @@
 #include<math.h>
 
 int main(){
-float G=39.47841,h,F;
+float G=430000,h,F;
 int n=10000,i,o;
 double a,b,c,d,e,f,Jx[n],Jy[n],Jz[n],Jvx[n],Jvy[n],Jvz[n],Jh[n],N[n],P[n];
 double dx,dy,dz;
@@ -38,18 +38,18 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	resultados=fopen("resultadosprueba.txt","w"); 
 		for(i=1;i<=10000;i++) 
 	{	
-	    F=1;
-	    Jx[i]=x[i-1]+Jvx[i-1]*h; 
-	    Jy[i]=y[i-1]+Jvy[i-1]*h;
-	    Jz[i]=z[i-1]+Jvz[i-1]*h;
+
+	   
 	    dx=Jx[i-1]-Tx[i-1];
 	    dy=Jy[i-1]-Ty[i-1];
 	    dz=Jz[i-1]-Tz[i-1];
+ 	    Jx[i]=dx+Jvx[i-1]*h; 
+	    Jy[i]=dy+Jvy[i-1]*h;
+	    Jz[i]=dz+Jvz[i-1]*h;
   	    r[i]=sqrt((dx,2)+pow(dy,2)+pow(dz,2));	//se calcula el radio cada que cambia x,y,z     
-	    F=1/r[i];
-	    Jvx[i]=F*Jx[i-1];
-	    Jvy[i]=F*Jy[i-1];
-	    Jvz[i]=F*Jz[i-1];
+	    Jvx[i]=Jvx[i-1]-h*((G*dx)/pow(r[i],3));
+	    Jvy[i]=Jvy[i-1]-h*((G*dy)/pow(r[i],3));
+	    Jvz[i]=Jvz[i-1]-h*((G*dz)/pow(r[i],3));
 
 	    fprintf(resultados," %lf\t %lf\t %lf\t %lf\t %lf\t %lf\n",Jx[i],Jy[i],Jz[i],Jvx[i],Jvy[i],Jvz[i]);
 	}
