@@ -167,16 +167,15 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	    dz8=Jz[i-1]-Mz[i-1];
 	    r8=sqrt((dx8,2)+pow(dy8,2)+pow(dz8,2));
 
- 	    Jx[i]=Jvx[i-1]*Jh[0]; 
-	    Jy[i]=Jvy[i-1]*Jh[0];
-	    Jz[i]=Jvz[i-1]*Jh[0];
-
 	    F=G*((1/(pow(r1,3)))+(1/(pow(r2,3)))+(1/(pow(r3,3)))+(1/(pow(r4,3)))+(1/(pow(r5,3)))+(1/(pow(r6,3)))+(1/(pow(r7,3)))+(1/(pow(r8,3))));   
-	    Jvx[i]=Jvx[i-1]*F;
-	    Jvy[i]=Jvy[i-1]*F;
-	    Jvz[i]=Jvz[i-1]*F;
+	    Jx[i]=Jx[i-1]+(Jvx[i-1]*Jh[0])+(1/2*F*(pow(Jh[0],2)));
+	    Jy[i]=Jy[i-1]+(Jvy[i-1]*Jh[0])+(1/2*F*(pow(Jh[0],2)));
+	    Jz[i]=Jz[i-1]+(Jvz[i-1]*Jh[0])+(1/2*F*(pow(Jh[0],2)));
+	    Jvx[i]=Jvx[i-1]+((1/2)*(Jh[0]*(F*1+F*Jh[0])));
+	    Jvy[i]=Jvy[i-1]+((1/2)*(Jh[0]*(F*1+F*Jh[0])));
+	    Jvz[i]=Jvz[i-1]+((1/2)*(Jh[0]*(F*1+F*Jh[0])));
 
-	    fprintf(resultados," %lf\t %lf\t %lf\t %lf\t %lf\t %lf\n",Jx[i],Jy[i],Jz[i],Jvx[i],Jvy[i],Jvz[i]);
+	    fprintf(resultados," %lf\t %lf\t %lf\t %lf\t %lf\t %lf\n",Jx[i],Jy[i],Jz[i]);
 	}
 	    fclose(resultados);
 	
