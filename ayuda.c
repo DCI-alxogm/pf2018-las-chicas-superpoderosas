@@ -8,15 +8,15 @@ int n=10000,i,o;
 double a,b,c,d,e,f;
 double dx,dy,dz,dx2,dy2,dz2,dx3,dy3,dz3,dx4,dy4,dz4,dx5,dy5,dz5,dx6,dy6,dz6,dx7,dy7,dz7,dx8,dy8,dz8;
 double r1,r2,r3,r4,r5,r6,r7,r8;
-double Jx[n],Jy[n],Jz[n],Jvx[n],Jvy[n],Jvz[n],Jh[n],N[n],P[n];
-double Tx[n],Ty[n],Tz[n],Tvx[n],Tvy[n],Tvz[n],Th[n];
-double Vx[n],Vy[n],Vz[n],Vvx[n],Vvy[n],Vvz[n],Vh[n];
-double Max[n],May[n],Maz[n],Mavx[n],Mavy[n],Mavz[n],Mah[n];
-double Nx[n],Ny[n],Nz[n],Nvx[n],Nvy[n],Nvz[n],Nh[n];
-double Px[n],Py[n],Pz[n],Pvx[n],Pvy[n],Pvz[n],Ph[n];
-double Sx[n],Sy[n],Sz[n],Svx[n],Svy[n],Svz[n],Sh[n];
-double Ux[n],Uy[n],Uz[n],Uvx[n],Uvy[n],Uvz[n],Uh[n];
-double Mx[n],My[n],Mz[n],Mvx[n],Mvy[n],Mvz[n],Mh[n];
+double Jx[n],Jy[n],Jz[n],Jvx[n],Jvy[n],Jvz[n],Jh,N[n],P[n];
+double Tx[n],Ty[n],Tz[n],Tvx[n],Tvy[n],Tvz[n],Th;
+double Vx[n],Vy[n],Vz[n],Vvx[n],Vvy[n],Vvz[n],Vh;
+double Max[n],May[n],Maz[n],Mavx[n],Mavy[n],Mavz[n],Mah;
+double Nx[n],Ny[n],Nz[n],Nvx[n],Nvy[n],Nvz[n],Nh;
+double Px[n],Py[n],Pz[n],Pvx[n],Pvy[n],Pvz[n],Ph;
+double Sx[n],Sy[n],Sz[n],Svx[n],Svy[n],Svz[n],Sh;
+double Ux[n],Uy[n],Uz[n],Uvx[n],Uvy[n],Uvz[n],Uh;
+double Mx[n],My[n],Mz[n],Mvx[n],Mvy[n],Mvz[n],Mh;
 
 FILE *planeta;
 FILE *resultados;
@@ -31,7 +31,7 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	Jvx[0]=d;
 	Jvy[0]=e;
 	Jvz[0]=f;
-	Jh[0]=h;
+	Jh=h;
 
 	planeta=fopen("tierra.txt","r"); 
 	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
@@ -43,7 +43,7 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	Tvx[0]=d;
 	Tvy[0]=e;
 	Tvz[0]=f;
-	Th[0]=h;
+	Th=h;
 	
 	planeta=fopen("venus.txt","r"); 
 	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
@@ -55,7 +55,7 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	Vvx[0]=d;
 	Vvy[0]=e;
 	Vvz[0]=f;
-	Vh[0]=h;
+	Vh=h;
 	
 	planeta=fopen("marte.txt","r"); 
 	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
@@ -67,7 +67,7 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	Mavx[0]=d;
 	Mavy[0]=e;
 	Mavz[0]=f;
-	Mah[0]=h;
+	Mah=h;
 
 	planeta=fopen("neptuno.txt","r"); 
 	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
@@ -79,7 +79,7 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	Nvx[0]=d;
 	Nvy[0]=e;
 	Nvz[0]=f;
-	Nh[0]=h;
+	Nh=h;
 
 	planeta=fopen("pluton.txt","r"); 
 	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
@@ -91,7 +91,7 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	Pvx[0]=d;
 	Pvy[0]=e;
 	Pvz[0]=f;
-	Ph[0]=h;
+	Ph=h;
 
 	planeta=fopen("saturno.txt","r"); 
 	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
@@ -103,7 +103,7 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	Svx[0]=d;
 	Svy[0]=e;
 	Svz[0]=f;
-	Sh[0]=h;
+	Sh=h;
 
 	planeta=fopen("urano.txt","r"); 
 	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
@@ -115,7 +115,7 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	Uvx[0]=d;
 	Uvy[0]=e;
 	Uvz[0]=f;
-	Uh[0]=h;
+	Uh=h;
 
 	planeta=fopen("mercurio.txt","r"); 
 	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
@@ -127,9 +127,9 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	Mvx[0]=d;
 	Mvy[0]=e;
 	Mvz[0]=f;
-	Mh[0]=h;
+	Mh=h;
 
-	resultados=fopen("resultadosjupiter.txt","w"); 
+	resultados=fopen("resultadosjupiterchidos.txt","w"); 
 		for(i=1;i<=10000;i++) 
 	{	
 
@@ -168,14 +168,14 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	    r8=sqrt((dx8,2)+pow(dy8,2)+pow(dz8,2));
 
 	    F=G*((1/(pow(r1,3)))+(1/(pow(r2,3)))+(1/(pow(r3,3)))+(1/(pow(r4,3)))+(1/(pow(r5,3)))+(1/(pow(r6,3)))+(1/(pow(r7,3)))+(1/(pow(r8,3))));   
-	    Jx[i]=Jx[i-1]+(Jvx[i-1]*Jh[0])+(1/2*F*(pow(Jh[0],2)));
-	    Jy[i]=Jy[i-1]+(Jvy[i-1]*Jh[0])+(1/2*F*(pow(Jh[0],2)));
-	    Jz[i]=Jz[i-1]+(Jvz[i-1]*Jh[0])+(1/2*F*(pow(Jh[0],2)));
-	    Jvx[i]=Jvx[i-1]+((1/2)*(Jh[0]*(F*1+F*Jh[0])));
-	    Jvy[i]=Jvy[i-1]+((1/2)*(Jh[0]*(F*1+F*Jh[0])));
-	    Jvz[i]=Jvz[i-1]+((1/2)*(Jh[0]*(F*1+F*Jh[0])));
+	    Jx[i]=Jx[i-1]+(Jvx[i-1]*Jh)+(1/2*F*(pow(Jh,2)));
+	    Jy[i]=Jy[i-1]+(Jvy[i-1]*Jh)+(1/2*F*(pow(Jh,2)));
+	    Jz[i]=Jz[i-1]+(Jvz[i-1]*Jh)+(1/2*F*(pow(Jh,2)));
+	    Jvx[i]=Jvx[i-1]+((1/2)*(Jh*(F*1+F*Jh)));
+	    Jvy[i]=Jvy[i-1]+((1/2)*(Jh*(F*1+F*Jh)));
+	    Jvz[i]=Jvz[i-1]+((1/2)*(Jh*(F*1+F*Jh)));
 
-	    fprintf(resultados," %lf\t %lf\t %lf\t %lf\t %lf\t %lf\n",Jx[i],Jy[i],Jz[i]);
+	    fprintf(resultados," %lf\t %lf\t %lf \n ",Jx[i],Jy[i],Jz[i]);
 	}
 	    fclose(resultados);
 	
