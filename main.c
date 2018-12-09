@@ -1,4 +1,4 @@
-/*Funcion main del proyecto final de programación, proyecto n cuerpos simulación de gases*/
+/*Funcion main del proyecto final de programación, proyecto n cuerpos*/
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -6,9 +6,11 @@
 
 
 
-void proyecto3();
+void proyecto();
+void variables();
 int main(){ //Se le da inicio al programa
 
+	variables();
 	proyecto3();
 	return 0;
 }
