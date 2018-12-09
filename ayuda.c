@@ -178,250 +178,62 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	    fprintf(resultados," %lf\t %lf\t %lf \n ",Jx[i],Jy[i],Jz[i]);
 	}
 	    fclose(resultados);
+
+	
+
+	resultados=fopen("resultadostierra.txt","w"); 
+		for(i=1;i<=10000;i++) 
+	{	
+	    dx=Tx[i-1]-Jx[i-1];
+	    dy=Ty[i-1]-Jy[i-1];
+	    dz=Tz[i-1]-Jz[i-1];
+  	    r1=sqrt((dx,2)+pow(dy,2)+pow(dz,2));
+	    dx2=Tx[i-1]-Vx[i-1];
+	    dy2=Ty[i-1]-Vy[i-1];
+	    dz2=Tz[i-1]-Vz[i-1];
+	    r2=sqrt((dx2,2)+pow(dy2,2)+pow(dz2,2));	
+	    dx3=Tx[i-1]-Max[i-1];
+	    dy3=Ty[i-1]-May[i-1];
+	    dz3=Tz[i-1]-Maz[i-1];
+	    r3=sqrt((dx3,2)+pow(dy3,2)+pow(dz3,2));	
+	    dx4=Tx[i-1]-Nx[i-1];
+	    dy4=Ty[i-1]-Ny[i-1];
+	    dz4=Tz[i-1]-Nz[i-1];
+	    r4=sqrt((dx4,2)+pow(dy4,2)+pow(dz4,2));
+	    dx5=Tx[i-1]-Px[i-1];
+	    dy5=Ty[i-1]-Py[i-1];
+	    dz5=Tz[i-1]-Pz[i-1];
+	    r5=sqrt((dx5,2)+pow(dy5,2)+pow(dz5,2));	
+	    dx6=Tx[i-1]-Sx[i-1];
+	    dy6=Ty[i-1]-Sy[i-1];
+	    dz6=Tz[i-1]-Sz[i-1];
+	    r6=sqrt((dx6,2)+pow(dy6,2)+pow(dz6,2));
+	    dx7=Tx[i-1]-Ux[i-1];
+	    dy7=Ty[i-1]-Uy[i-1];
+	    dz7=Tz[i-1]-Uz[i-1];
+	    r7=sqrt((dx7,2)+pow(dy7,2)+pow(dz7,2));
+	    dx8=Tx[i-1]-Mx[i-1];
+	    dy8=Ty[i-1]-My[i-1];
+	    dz8=Tz[i-1]-Mz[i-1];
+	    r8=sqrt((dx8,2)+pow(dy8,2)+pow(dz8,2));
+
+	    F=G*((1/(pow(r1,3)))+(1/(pow(r2,3)))+(1/(pow(r3,3)))+(1/(pow(r4,3)))+(1/(pow(r5,3)))+(1/(pow(r6,3)))+(1/(pow(r7,3)))+(1/(pow(r8,3))));   
+	    Tx[i]=Tx[i-1]+(Tvx[i-1]*Th)+(1/2*F*(pow(Th,2)));
+	    Ty[i]=Ty[i-1]+(Tvy[i-1]*Th)+(1/2*F*(pow(Th,2)));
+	    Tz[i]=Tz[i-1]+(Tvz[i-1]*Th)+(1/2*F*(pow(Th,2)));
+	    Tvx[i]=Tvx[i-1]+((1/2)*(Th*(F*1+F*Th)));
+	    Tvy[i]=Tvy[i-1]+((1/2)*(Th*(F*1+F*Th)));
+	    Tvz[i]=Tvz[i-1]+((1/2)*(Th*(F*1+F*Th)));
+
+	    fprintf(resultados," %lf\t %lf\t %lf \n ",Tx[i],Ty[i],Tz[i]);
+	}
+	    fclose(resultados);
 	
 
 
 
 
-	/*resultados=fopen("resultadostierra.txt","w");
-	for(i=1;i<=10000;i++) 
-	{	
 
-	   
-	    dx=Tx[i-1]-Jx[i-1];
-	    dy=Ty[i-1]-Jy[i-1];
-	    dz=Tz[i-1]-Jz[i-1];
- 	    Tx[i]=dx+Tvx[i-1]*Th[0]; 
-	    Ty[i]=dy+Tvy[i-1]*Th[0];
-	    Tz[i]=dz+Tvz[i-1]*Th[0];
-  	    r[i]=sqrt((dx,2)+pow(dy,2)+pow(dz,2));	//se calcula el radio cada que cambia x,y,z     
-	    Tvx[i]=Tvx[i-1]-h*((G*dx)/pow(r[i],3));
-	    Tvy[i]=Tvy[i-1]-h*((G*dy)/pow(r[i],3));
-	    Tvz[i]=Tvz[i-1]-h*((G*dz)/pow(r[i],3));
-
-	    fprintf(resultados," %lf\t %lf\t %lf\t %lf\t %lf\t %lf\n",Tx[i],Ty[i],Tz[i],Tvx[i],Tvy[i],Tvz[i]);
-	}
-	    fclose(resultados);
-
-	/*planeta=fopen("venus.txt","r"); 
-	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h);
-	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);
-	fclose(planeta);	
-	x[0]=a; 
-	y[0]=b;
-	z[0]=c;
-	vx[0]=d;
-	vy[0]=e;
-	vz[0]=f;
-	resultados=fopen("resultadosvenus.txt","w"); 
-		for(i=1;i<=10000;i++) 
-	{     	  
-	    x[i]=x[i-1]+vx[i-1]*h; 
-	    y[i]=y[i-1]+vy[i-1]*h;
-	    z[i]=z[i-1]+vz[i-1]*h;
-  	    r=sqrt(pow(x[i-1],2)+pow(y[i-1],2)+pow(z[i-1],2));	  
-	    vx[i]=vx[i-1]-h*((G*x[i-1])/pow(r,3));
-	    vy[i]=vy[i-1]-h*((G*y[i-1])/pow(r,3));
-	    vz[i]=vz[i-1]-h*((G*z[i-1])/pow(r,3));
-	    fprintf(resultados," %lf\t %lf\t %lf\t %lf\t %lf\t %lf\n",x[i],y[i],z[i],vx[i],vy[i],vz[i]);
-	}
-	    fclose(resultados);
-}
-if(o==2)
-{
-	planeta=fopen("tierra.txt","r"); 
-	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h);
-	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);
-	fclose(planeta);	
-	x[0]=a; 
-	y[0]=b;
-	z[0]=c;
-	vx[0]=d;
-	vy[0]=e;
-	vz[0]=f;
-	resultados=fopen("resultadostierra.txt","w"); 
-		for(i=1;i<=10000;i++) 
-	{	     	   
-	    x[i]=x[i-1]+vx[i-1]*h; 
-	    y[i]=y[i-1]+vy[i-1]*h;
-	    z[i]=z[i-1]+vz[i-1]*h;
-  	    r=sqrt(pow(x[i-1],2)+pow(y[i-1],2)+pow(z[i-1],2));	 
-	    vx[i]=vx[i-1]-h*((G*x[i-1])/pow(r,3));
-	    vy[i]=vy[i-1]-h*((G*y[i-1])/pow(r,3));
-	    vz[i]=vz[i-1]-h*((G*z[i-1])/pow(r,3));
-	    fprintf(resultados," %lf\t %lf\t %lf\t %lf\t %lf\t %lf\n",x[i],y[i],z[i],vx[i],vy[i],vz[i]);
-	}
-	    fclose(resultados);
-
-}
-
-if(o==3)
-{
-	planeta=fopen("marte.txt","r"); 
-	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h);
-	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);
-	fclose(planeta);	
-	x[0]=a; 
-	y[0]=b;
-	z[0]=c;
-	vx[0]=d;
-	vy[0]=e;
-	vz[0]=f;
-	resultados=fopen("resultadosmarte.txt","w"); 
-		for(i=1;i<=10000;i++) 
-	{	      	   
-	    x[i]=x[i-1]+vx[i-1]*h; 
-	    y[i]=y[i-1]+vy[i-1]*h;
-	    z[i]=z[i-1]+vz[i-1]*h;
-  	    r=sqrt(pow(x[i-1],2)+pow(y[i-1],2)+pow(z[i-1],2));	  
-	    vx[i]=vx[i-1]-h*((G*x[i-1])/pow(r,3));
-	    vy[i]=vy[i-1]-h*((G*y[i-1])/pow(r,3));
-	    vz[i]=vz[i-1]-h*((G*z[i-1])/pow(r,3));
-
-	    fprintf(resultados," %lf\t %lf\t %lf\t %lf\t %lf\t %lf\n",x[i],y[i],z[i],vx[i],vy[i],vz[i]);
-	}
-	    fclose(resultados);
-}
-
-if(o==4)
-{
-	planeta=fopen("jupiter.txt","r"); 
-	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h);
-	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);
-	fclose(planeta);	
-	x[0]=a; 
-	y[0]=b;
-	z[0]=c;
-	vx[0]=d;
-	vy[0]=e;
-	vz[0]=f;
-	resultados=fopen("resultadosjupiter.txt","w"); 
-		for(i=1;i<=10000;i++) 
-	{	      	   
-	    x[i]=x[i-1]+vx[i-1]*h; 
-	    y[i]=y[i-1]+vy[i-1]*h;
-	    z[i]=z[i-1]+vz[i-1]*h;
-  	    r=sqrt(pow(x[i-1],2)+pow(y[i-1],2)+pow(z[i-1],2));	  
-	    vx[i]=vx[i-1]-h*((G*x[i-1])/pow(r,3));
-	    vy[i]=vy[i-1]-h*((G*y[i-1])/pow(r,3));
-	    vz[i]=vz[i-1]-h*((G*z[i-1])/pow(r,3));
-
-	    fprintf(resultados," %lf\t %lf\t %lf\t %lf\t %lf\t %lf\n",x[i],y[i],z[i],vx[i],vy[i],vz[i]);
-	}
-	    fclose(resultados);
-}
-
-if(o==5)
-{
-	planeta=fopen("saturno.txt","r"); 
-	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h);
-	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);
-	fclose(planeta);	
-	x[0]=a; 
-	y[0]=b;
-	z[0]=c;
-	vx[0]=d;
-	vy[0]=e;
-	vz[0]=f;
-	resultados=fopen("resultadossaturno.txt","w"); 
-		for(i=1;i<=10000;i++) 
-	{	      	   
-	    x[i]=x[i-1]+vx[i-1]*h; 
-	    y[i]=y[i-1]+vy[i-1]*h;
-	    z[i]=z[i-1]+vz[i-1]*h;
-  	    r=sqrt(pow(x[i-1],2)+pow(y[i-1],2)+pow(z[i-1],2));	  
-	    vx[i]=vx[i-1]-h*((G*x[i-1])/pow(r,3));
-	    vy[i]=vy[i-1]-h*((G*y[i-1])/pow(r,3));
-	    vz[i]=vz[i-1]-h*((G*z[i-1])/pow(r,3));
-
-	    fprintf(resultados," %lf\t %lf\t %lf\t %lf\t %lf\t %lf\n",x[i],y[i],z[i],vx[i],vy[i],vz[i]);
-	}
-	    fclose(resultados);
-}
-
-if(o==6)
-{
-	planeta=fopen("urano.txt","r"); 
-	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h);
-	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);
-	fclose(planeta);	
-	x[0]=a; 
-	y[0]=b;
-	z[0]=c;
-	vx[0]=d;
-	vy[0]=e;
-	vz[0]=f;
-	resultados=fopen("resultadosurano.txt","w"); 
-		for(i=1;i<=10000;i++) 
-	{	      	   
-	    x[i]=x[i-1]+vx[i-1]*h; 
-	    y[i]=y[i-1]+vy[i-1]*h;
-	    z[i]=z[i-1]+vz[i-1]*h;
-  	    r=sqrt(pow(x[i-1],2)+pow(y[i-1],2)+pow(z[i-1],2));	  
-	    vx[i]=vx[i-1]-h*((G*x[i-1])/pow(r,3));
-	    vy[i]=vy[i-1]-h*((G*y[i-1])/pow(r,3));
-	    vz[i]=vz[i-1]-h*((G*z[i-1])/pow(r,3));
-
-	    fprintf(resultados," %lf\t %lf\t %lf\t %lf\t %lf\t %lf\n",x[i],y[i],z[i],vx[i],vy[i],vz[i]);
-	}
-	    fclose(resultados);
-}
-
-if(o==7)
-{
-	planeta=fopen("neptuno.txt","r"); 
-	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h);
-	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);
-	fclose(planeta);	
-	x[0]=a; 
-	y[0]=b;
-	z[0]=c;
-	vx[0]=d;
-	vy[0]=e;
-	vz[0]=f;
-	resultados=fopen("resultadosneptuno.txt","w"); 
-		for(i=1;i<=10000;i++) 
-	{	      	   
-	    x[i]=x[i-1]+vx[i-1]*h; 
-	    y[i]=y[i-1]+vy[i-1]*h;
-	    z[i]=z[i-1]+vz[i-1]*h;
-  	    r=sqrt(pow(x[i-1],2)+pow(y[i-1],2)+pow(z[i-1],2));	  
-	    vx[i]=vx[i-1]-h*((G*x[i-1])/pow(r,3));
-	    vy[i]=vy[i-1]-h*((G*y[i-1])/pow(r,3));
-	    vz[i]=vz[i-1]-h*((G*z[i-1])/pow(r,3));
-
-	    fprintf(resultados," %lf\t %lf\t %lf\t %lf\t %lf\t %lf\n",x[i],y[i],z[i],vx[i],vy[i],vz[i]);
-	}
-	    fclose(resultados);
-}
-
-if(o==8)
-{
-	planeta=fopen("pluton.txt","r"); 
-	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h);
-	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);
-	fclose(planeta);	
-	x[0]=a; 
-	y[0]=b;
-	z[0]=c;
-	vx[0]=d;
-	vy[0]=e;
-	vz[0]=f;
-	resultados=fopen("resultadospluton.txt","w"); 
-		for(i=1;i<=10000;i++) 
-	{	      	   
-	    x[i]=x[i-1]+vx[i-1]*h; 
-	    y[i]=y[i-1]+vy[i-1]*h;
-	    z[i]=z[i-1]+vz[i-1]*h;
-  	    r=sqrt(pow(x[i-1],2)+pow(y[i-1],2)+pow(z[i-1],2));	  
-	    vx[i]=vx[i-1]-h*((G*x[i-1])/pow(r,3));
-	    vy[i]=vy[i-1]-h*((G*y[i-1])/pow(r,3));
-	    vz[i]=vz[i-1]-h*((G*z[i-1])/pow(r,3));
-
-	    fprintf(resultados," %lf\t %lf\t %lf\t %lf\t %lf\t %lf\n",x[i],y[i],z[i],vx[i],vy[i],vz[i]);
-	}
-	    fclose(resultados);
-}*/
 
 return 0;
 }
