@@ -1,11 +1,13 @@
 #include<stdio.h>
 #include<math.h>
 
-int main(){
+int main()
+{
 float G=430000,h,F;
 int n=10000,i,o;
 double a,b,c,d,e,f;
-double dx,dy,dz,r[n];
+double dx,dy,dz,dx2,dy2,dz2,dx3,dy3,dz3,dx4,dy4,dz4,dx5,dy5,dz5,dx6,dy6,dz6,dx7,dy7,dz7,dx8,dy8,dz8;
+double r1,r2,r3,r4,r5,r6,r7,r8;
 double Jx[n],Jy[n],Jz[n],Jvx[n],Jvy[n],Jvz[n],Jh[n],N[n],P[n];
 double Tx[n],Ty[n],Tz[n],Tvx[n],Tvy[n],Tvz[n],Th[n];
 double Vx[n],Vy[n],Vz[n],Vvx[n],Vvy[n],Vvz[n],Vh[n];
@@ -135,18 +137,54 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	    dx=Jx[i-1]-Tx[i-1];
 	    dy=Jy[i-1]-Ty[i-1];
 	    dz=Jz[i-1]-Tz[i-1];
- 	    Jx[i]=dx+Jvx[i-1]*Jh[0]; 
-	    Jy[i]=dy+Jvy[i-1]*Jh[0];
-	    Jz[i]=dz+Jvz[i-1]*Jh[0];
-  	    r[i]=sqrt((dx,2)+pow(dy,2)+pow(dz,2));	//se calcula el radio cada que cambia x,y,z     
-	    Jvx[i]=Jvx[i-1]-h*((G*dx)/pow(r[i],3));
-	    Jvy[i]=Jvy[i-1]-h*((G*dy)/pow(r[i],3));
-	    Jvz[i]=Jvz[i-1]-h*((G*dz)/pow(r[i],3));
+  	    r1=sqrt((dx,2)+pow(dy,2)+pow(dz,2));
+	    dx2=Jx[i-1]-Vx[i-1];
+	    dy2=Jy[i-1]-Vy[i-1];
+	    dz2=Jz[i-1]-Vz[i-1];
+	    r2=sqrt((dx2,2)+pow(dy2,2)+pow(dz2,2));	
+	    dx3=Jx[i-1]-Max[i-1];
+	    dy3=Jy[i-1]-May[i-1];
+	    dz3=Jz[i-1]-Maz[i-1];
+	    r3=sqrt((dx3,2)+pow(dy3,2)+pow(dz3,2));	
+	    dx4=Jx[i-1]-Nx[i-1];
+	    dy4=Jy[i-1]-Ny[i-1];
+	    dz4=Jz[i-1]-Nz[i-1];
+	    r4=sqrt((dx4,2)+pow(dy4,2)+pow(dz4,2));
+	    dx5=Jx[i-1]-Px[i-1];
+	    dy5=Jy[i-1]-Py[i-1];
+	    dz5=Jz[i-1]-Pz[i-1];
+	    r5=sqrt((dx5,2)+pow(dy5,2)+pow(dz5,2));	
+	    dx6=Jx[i-1]-Sx[i-1];
+	    dy6=Jy[i-1]-Sy[i-1];
+	    dz6=Jz[i-1]-Sz[i-1];
+	    r6=sqrt((dx6,2)+pow(dy6,2)+pow(dz6,2));
+	    dx7=Jx[i-1]-Ux[i-1];
+	    dy7=Jy[i-1]-Uy[i-1];
+	    dz7=Jz[i-1]-Uz[i-1];
+	    r7=sqrt((dx7,2)+pow(dy7,2)+pow(dz7,2));
+	    dx8=Jx[i-1]-Mx[i-1];
+	    dy8=Jy[i-1]-My[i-1];
+	    dz8=Jz[i-1]-Mz[i-1];
+	    r8=sqrt((dx8,2)+pow(dy8,2)+pow(dz8,2));
+
+ 	    Jx[i]=Jvx[i-1]*Jh[0]; 
+	    Jy[i]=Jvy[i-1]*Jh[0];
+	    Jz[i]=Jvz[i-1]*Jh[0];
+
+	    F=G*((1/(pow(r1,3)))+(1/(pow(r2,3)))+(1/(pow(r3,3)))+(1/(pow(r4,3)))+(1/(pow(r5,3)))+(1/(pow(r6,3)))+(1/(pow(r7,3)))+(1/(pow(r8,3))));   
+	    Jvx[i]=Jvx[i-1]*F;
+	    Jvy[i]=Jvy[i-1]*F;
+	    Jvz[i]=Jvz[i-1]*F;
 
 	    fprintf(resultados," %lf\t %lf\t %lf\t %lf\t %lf\t %lf\n",Jx[i],Jy[i],Jz[i],Jvx[i],Jvy[i],Jvz[i]);
 	}
 	    fclose(resultados);
-	resultados=fopen("resultadostierra.txt","w");
+	
+
+
+
+
+	/*resultados=fopen("resultadostierra.txt","w");
 	for(i=1;i<=10000;i++) 
 	{	
 
@@ -387,4 +425,5 @@ if(o==8)
 }*/
 
 return 0;
-}// termina el programa
+}
+// termina el programa
