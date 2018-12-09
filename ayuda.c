@@ -17,9 +17,9 @@ double Px[n],Py[n],Pz[n],Pvx[n],Pvy[n],Pvz[n],Ph;
 double Sx[n],Sy[n],Sz[n],Svx[n],Svy[n],Svz[n],Sh;
 double Ux[n],Uy[n],Uz[n],Uvx[n],Uvy[n],Uvz[n],Uh;
 double Mx[n],My[n],Mz[n],Mvx[n],Mvy[n],Mvz[n],Mh;
-
 FILE *planeta;
 FILE *resultados;
+
 printf("Hola, este programa calcula la orbita de diferentes planetas entorno al sol\n");
 	planeta=fopen("jupiter.txt","r"); 
 	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
@@ -228,6 +228,360 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	    fprintf(resultados," %lf\t %lf\t %lf \n ",Tx[i],Ty[i],Tz[i]);
 	}
 	    fclose(resultados);
+
+	
+
+	resultados=fopen("resultadosvenus.txt","w"); 
+		for(i=1;i<=10000;i++) 
+	{	
+	    dx=Vx[i-1]-Jx[i-1];
+	    dy=Vy[i-1]-Jy[i-1];
+	    dz=Vz[i-1]-Jz[i-1];
+  	    r1=sqrt((dx,2)+pow(dy,2)+pow(dz,2));
+	    dx2=Vx[i-1]-Tx[i-1];
+	    dy2=Vy[i-1]-Ty[i-1];
+	    dz2=Vz[i-1]-Tz[i-1];
+	    r2=sqrt((dx2,2)+pow(dy2,2)+pow(dz2,2));	
+	    dx3=Vx[i-1]-Max[i-1];
+	    dy3=Vy[i-1]-May[i-1];
+	    dz3=Vz[i-1]-Maz[i-1];
+	    r3=sqrt((dx3,2)+pow(dy3,2)+pow(dz3,2));	
+	    dx4=Vx[i-1]-Nx[i-1];
+	    dy4=Vy[i-1]-Ny[i-1];
+	    dz4=Vz[i-1]-Nz[i-1];
+	    r4=sqrt((dx4,2)+pow(dy4,2)+pow(dz4,2));
+	    dx5=Vx[i-1]-Px[i-1];
+	    dy5=Vy[i-1]-Py[i-1];
+	    dz5=Vz[i-1]-Pz[i-1];
+	    r5=sqrt((dx5,2)+pow(dy5,2)+pow(dz5,2));	
+	    dx6=Vx[i-1]-Sx[i-1];
+	    dy6=Vy[i-1]-Sy[i-1];
+	    dz6=Vz[i-1]-Sz[i-1];
+	    r6=sqrt((dx6,2)+pow(dy6,2)+pow(dz6,2));
+	    dx7=Vx[i-1]-Ux[i-1];
+	    dy7=Vy[i-1]-Uy[i-1];
+	    dz7=Vz[i-1]-Uz[i-1];
+	    r7=sqrt((dx7,2)+pow(dy7,2)+pow(dz7,2));
+	    dx8=Vx[i-1]-Mx[i-1];
+	    dy8=Vy[i-1]-My[i-1];
+	    dz8=Vz[i-1]-Mz[i-1];
+	    r8=sqrt((dx8,2)+pow(dy8,2)+pow(dz8,2));
+
+	    F=G*((1/(pow(r1,3)))+(1/(pow(r2,3)))+(1/(pow(r3,3)))+(1/(pow(r4,3)))+(1/(pow(r5,3)))+(1/(pow(r6,3)))+(1/(pow(r7,3)))+(1/(pow(r8,3))));   
+	    Vx[i]=Vx[i-1]+(Vvx[i-1]*Vh)+(1/2*F*(pow(Vh,2)));
+	    Vy[i]=Vy[i-1]+(Vvy[i-1]*Vh)+(1/2*F*(pow(Vh,2)));
+	    Vz[i]=Vz[i-1]+(Vvz[i-1]*Vh)+(1/2*F*(pow(Vh,2)));
+	    Vvx[i]=Vvx[i-1]+((1/2)*(Vh*(F*1+F*Vh)));
+	    Vvy[i]=Vvy[i-1]+((1/2)*(Vh*(F*1+F*Vh)));
+	    Vvz[i]=Vvz[i-1]+((1/2)*(Vh*(F*1+F*Vh)));
+
+	    fprintf(resultados," %lf\t %lf\t %lf \n ",Vx[i],Vy[i],Vz[i]);
+	}
+	    fclose(resultados);
+
+	
+
+	resultados=fopen("resultadosmarte.txt","w"); 
+		for(i=1;i<=10000;i++) 
+	{	
+	    dx=Max[i-1]-Jx[i-1];
+	    dy=May[i-1]-Jy[i-1];
+	    dz=Maz[i-1]-Jz[i-1];
+  	    r1=sqrt((dx,2)+pow(dy,2)+pow(dz,2));
+	    dx2=Max[i-1]-Vx[i-1];
+	    dy2=May[i-1]-Vy[i-1];
+	    dz2=Maz[i-1]-Vz[i-1];
+	    r2=sqrt((dx2,2)+pow(dy2,2)+pow(dz2,2));	
+	    dx3=Max[i-1]-Tx[i-1];
+	    dy3=May[i-1]-Ty[i-1];
+	    dz3=Maz[i-1]-Tz[i-1];
+	    r3=sqrt((dx3,2)+pow(dy3,2)+pow(dz3,2));	
+	    dx4=Max[i-1]-Nx[i-1];
+	    dy4=May[i-1]-Ny[i-1];
+	    dz4=Maz[i-1]-Nz[i-1];
+	    r4=sqrt((dx4,2)+pow(dy4,2)+pow(dz4,2));
+	    dx5=Max[i-1]-Px[i-1];
+	    dy5=May[i-1]-Py[i-1];
+	    dz5=Maz[i-1]-Pz[i-1];
+	    r5=sqrt((dx5,2)+pow(dy5,2)+pow(dz5,2));	
+	    dx6=Max[i-1]-Sx[i-1];
+	    dy6=May[i-1]-Sy[i-1];
+	    dz6=Maz[i-1]-Sz[i-1];
+	    r6=sqrt((dx6,2)+pow(dy6,2)+pow(dz6,2));
+	    dx7=Max[i-1]-Ux[i-1];
+	    dy7=May[i-1]-Uy[i-1];
+	    dz7=Maz[i-1]-Uz[i-1];
+	    r7=sqrt((dx7,2)+pow(dy7,2)+pow(dz7,2));
+	    dx8=Max[i-1]-Mx[i-1];
+	    dy8=May[i-1]-My[i-1];
+	    dz8=Maz[i-1]-Mz[i-1];
+	    r8=sqrt((dx8,2)+pow(dy8,2)+pow(dz8,2));
+
+	    F=G*((1/(pow(r1,3)))+(1/(pow(r2,3)))+(1/(pow(r3,3)))+(1/(pow(r4,3)))+(1/(pow(r5,3)))+(1/(pow(r6,3)))+(1/(pow(r7,3)))+(1/(pow(r8,3))));   
+	    Max[i]=Max[i-1]+(Mavx[i-1]*Mah)+(1/2*F*(pow(Mah,2)));
+	    May[i]=May[i-1]+(Mavy[i-1]*Mah)+(1/2*F*(pow(Mah,2)));
+	    Maz[i]=Maz[i-1]+(Mavz[i-1]*Mah)+(1/2*F*(pow(Mah,2)));
+	    Mavx[i]=Mavx[i-1]+((1/2)*(Mah*(F*1+F*Mah)));
+	    Mavy[i]=Mavy[i-1]+((1/2)*(Mah*(F*1+F*Mah)));
+	    Mavz[i]=Mavz[i-1]+((1/2)*(Mah*(F*1+F*Mah)));
+
+	    fprintf(resultados," %lf\t %lf\t %lf \n ",Max[i],May[i],Maz[i]);
+	}
+	    fclose(resultados);
+
+	
+
+	resultados=fopen("resultadosneptuno.txt","w"); 
+		for(i=1;i<=10000;i++) 
+	{	
+	    dx=Nx[i-1]-Jx[i-1];
+	    dy=Ny[i-1]-Jy[i-1];
+	    dz=Nz[i-1]-Jz[i-1];
+  	    r1=sqrt((dx,2)+pow(dy,2)+pow(dz,2));
+	    dx2=Nx[i-1]-Vx[i-1];
+	    dy2=Ny[i-1]-Vy[i-1];
+	    dz2=Nz[i-1]-Vz[i-1];
+	    r2=sqrt((dx2,2)+pow(dy2,2)+pow(dz2,2));	
+	    dx3=Nx[i-1]-Max[i-1];
+	    dy3=Ny[i-1]-May[i-1];
+	    dz3=Nz[i-1]-Maz[i-1];
+	    r3=sqrt((dx3,2)+pow(dy3,2)+pow(dz3,2));	
+	    dx4=Nx[i-1]-Tx[i-1];
+	    dy4=Ny[i-1]-Ty[i-1];
+	    dz4=Nz[i-1]-Tz[i-1];
+	    r4=sqrt((dx4,2)+pow(dy4,2)+pow(dz4,2));
+	    dx5=Nx[i-1]-Px[i-1];
+	    dy5=Ny[i-1]-Py[i-1];
+	    dz5=Nz[i-1]-Pz[i-1];
+	    r5=sqrt((dx5,2)+pow(dy5,2)+pow(dz5,2));	
+	    dx6=Nx[i-1]-Sx[i-1];
+	    dy6=Ny[i-1]-Sy[i-1];
+	    dz6=Nz[i-1]-Sz[i-1];
+	    r6=sqrt((dx6,2)+pow(dy6,2)+pow(dz6,2));
+	    dx7=Nx[i-1]-Ux[i-1];
+	    dy7=Ny[i-1]-Uy[i-1];
+	    dz7=Nz[i-1]-Uz[i-1];
+	    r7=sqrt((dx7,2)+pow(dy7,2)+pow(dz7,2));
+	    dx8=Nx[i-1]-Mx[i-1];
+	    dy8=Ny[i-1]-My[i-1];
+	    dz8=Nz[i-1]-Mz[i-1];
+	    r8=sqrt((dx8,2)+pow(dy8,2)+pow(dz8,2));
+
+	    F=G*((1/(pow(r1,3)))+(1/(pow(r2,3)))+(1/(pow(r3,3)))+(1/(pow(r4,3)))+(1/(pow(r5,3)))+(1/(pow(r6,3)))+(1/(pow(r7,3)))+(1/(pow(r8,3))));   
+	    Nx[i]=Nx[i-1]+(Nvx[i-1]*Nh)+(1/2*F*(pow(Nh,2)));
+	    Ny[i]=Ny[i-1]+(Nvy[i-1]*Nh)+(1/2*F*(pow(Nh,2)));
+	    Nz[i]=Nz[i-1]+(Nvz[i-1]*Nh)+(1/2*F*(pow(Nh,2)));
+	    Nvx[i]=Nvx[i-1]+((1/2)*(Nh*(F*1+F*Nh)));
+	    Nvy[i]=Nvy[i-1]+((1/2)*(Nh*(F*1+F*Nh)));
+	    Nvz[i]=Nvz[i-1]+((1/2)*(Nh*(F*1+F*Nh)));
+
+	    fprintf(resultados," %lf\t %lf\t %lf \n ",Nx[i],Ny[i],Nz[i]);
+	}
+	    fclose(resultados);
+
+	
+
+	resultados=fopen("resultadospluton.txt","w"); 
+		for(i=1;i<=10000;i++) 
+	{	
+	    dx=Px[i-1]-Jx[i-1];
+	    dy=Py[i-1]-Jy[i-1];
+	    dz=Pz[i-1]-Jz[i-1];
+  	    r1=sqrt((dx,2)+pow(dy,2)+pow(dz,2));
+	    dx2=Px[i-1]-Vx[i-1];
+	    dy2=Py[i-1]-Vy[i-1];
+	    dz2=Pz[i-1]-Vz[i-1];
+	    r2=sqrt((dx2,2)+pow(dy2,2)+pow(dz2,2));	
+	    dx3=Px[i-1]-Max[i-1];
+	    dy3=Py[i-1]-May[i-1];
+	    dz3=Pz[i-1]-Maz[i-1];
+	    r3=sqrt((dx3,2)+pow(dy3,2)+pow(dz3,2));	
+	    dx4=Px[i-1]-Nx[i-1];
+	    dy4=Py[i-1]-Ny[i-1];
+	    dz4=Pz[i-1]-Nz[i-1];
+	    r4=sqrt((dx4,2)+pow(dy4,2)+pow(dz4,2));
+	    dx5=Px[i-1]-Tx[i-1];
+	    dy5=Py[i-1]-Ty[i-1];
+	    dz5=Pz[i-1]-Tz[i-1];
+	    r5=sqrt((dx5,2)+pow(dy5,2)+pow(dz5,2));	
+	    dx6=Px[i-1]-Sx[i-1];
+	    dy6=Py[i-1]-Sy[i-1];
+	    dz6=Pz[i-1]-Sz[i-1];
+	    r6=sqrt((dx6,2)+pow(dy6,2)+pow(dz6,2));
+	    dx7=Px[i-1]-Ux[i-1];
+	    dy7=Py[i-1]-Uy[i-1];
+	    dz7=Pz[i-1]-Uz[i-1];
+	    r7=sqrt((dx7,2)+pow(dy7,2)+pow(dz7,2));
+	    dx8=Px[i-1]-Mx[i-1];
+	    dy8=Py[i-1]-My[i-1];
+	    dz8=Pz[i-1]-Mz[i-1];
+	    r8=sqrt((dx8,2)+pow(dy8,2)+pow(dz8,2));
+
+	    F=G*((1/(pow(r1,3)))+(1/(pow(r2,3)))+(1/(pow(r3,3)))+(1/(pow(r4,3)))+(1/(pow(r5,3)))+(1/(pow(r6,3)))+(1/(pow(r7,3)))+(1/(pow(r8,3))));   
+	    Px[i]=Px[i-1]+(Pvx[i-1]*Ph)+(1/2*F*(pow(Ph,2)));
+	    Py[i]=Py[i-1]+(Pvy[i-1]*Ph)+(1/2*F*(pow(Ph,2)));
+	    Pz[i]=Pz[i-1]+(Pvz[i-1]*Ph)+(1/2*F*(pow(Ph,2)));
+	    Pvx[i]=Pvx[i-1]+((1/2)*(Ph*(F*1+F*Ph)));
+	    Pvy[i]=Pvy[i-1]+((1/2)*(Ph*(F*1+F*Ph)));
+	    Pvz[i]=Pvz[i-1]+((1/2)*(Ph*(F*1+F*Ph)));
+
+	    fprintf(resultados," %lf\t %lf\t %lf \n ",Px[i],Py[i],Pz[i]);
+	}
+	    fclose(resultados);
+
+	
+
+	resultados=fopen("resultadossaturno.txt","w"); 
+		for(i=1;i<=10000;i++) 
+	{	
+	    dx=Sx[i-1]-Jx[i-1];
+	    dy=Sy[i-1]-Jy[i-1];
+	    dz=Sz[i-1]-Jz[i-1];
+  	    r1=sqrt((dx,2)+pow(dy,2)+pow(dz,2));
+	    dx2=Sx[i-1]-Vx[i-1];
+	    dy2=Sy[i-1]-Vy[i-1];
+	    dz2=Sz[i-1]-Vz[i-1];
+	    r2=sqrt((dx2,2)+pow(dy2,2)+pow(dz2,2));	
+	    dx3=Sx[i-1]-Max[i-1];
+	    dy3=Sy[i-1]-May[i-1];
+	    dz3=Sz[i-1]-Maz[i-1];
+	    r3=sqrt((dx3,2)+pow(dy3,2)+pow(dz3,2));	
+	    dx4=Sx[i-1]-Nx[i-1];
+	    dy4=Sy[i-1]-Ny[i-1];
+	    dz4=Sz[i-1]-Nz[i-1];
+	    r4=sqrt((dx4,2)+pow(dy4,2)+pow(dz4,2));
+	    dx5=Sx[i-1]-Tx[i-1];
+	    dy5=Sy[i-1]-Ty[i-1];
+	    dz5=Sz[i-1]-Tz[i-1];
+	    r5=sqrt((dx5,2)+pow(dy5,2)+pow(dz5,2));	
+	    dx6=Sx[i-1]-Px[i-1];
+	    dy6=Sy[i-1]-Py[i-1];
+	    dz6=Sz[i-1]-Pz[i-1];
+	    r6=sqrt((dx6,2)+pow(dy6,2)+pow(dz6,2));
+	    dx7=Sx[i-1]-Ux[i-1];
+	    dy7=Sy[i-1]-Uy[i-1];
+	    dz7=Sz[i-1]-Uz[i-1];
+	    r7=sqrt((dx7,2)+pow(dy7,2)+pow(dz7,2));
+	    dx8=Sx[i-1]-Mx[i-1];
+	    dy8=Sy[i-1]-My[i-1];
+	    dz8=Sz[i-1]-Mz[i-1];
+	    r8=sqrt((dx8,2)+pow(dy8,2)+pow(dz8,2));
+
+	    F=G*((1/(pow(r1,3)))+(1/(pow(r2,3)))+(1/(pow(r3,3)))+(1/(pow(r4,3)))+(1/(pow(r5,3)))+(1/(pow(r6,3)))+(1/(pow(r7,3)))+(1/(pow(r8,3))));   
+	    Sx[i]=Sx[i-1]+(Svx[i-1]*Sh)+(1/2*F*(pow(Sh,2)));
+	    Sy[i]=Sy[i-1]+(Svy[i-1]*Sh)+(1/2*F*(pow(Sh,2)));
+	    Sz[i]=Sz[i-1]+(Svz[i-1]*Sh)+(1/2*F*(pow(Sh,2)));
+	    Svx[i]=Svx[i-1]+((1/2)*(Sh*(F*1+F*Sh)));
+	    Svy[i]=Svy[i-1]+((1/2)*(Sh*(F*1+F*Sh)));
+	    Svz[i]=Svz[i-1]+((1/2)*(Sh*(F*1+F*Sh)));
+
+	    fprintf(resultados," %lf\t %lf\t %lf \n ",Sx[i],Sy[i],Sz[i]);
+	}
+	    fclose(resultados);
+	
+
+	
+
+	resultados=fopen("resultadosurano.txt","w"); 
+		for(i=1;i<=10000;i++) 
+	{	
+	    dx=Ux[i-1]-Jx[i-1];
+	    dy=Uy[i-1]-Jy[i-1];
+	    dz=Uz[i-1]-Jz[i-1];
+  	    r1=sqrt((dx,2)+pow(dy,2)+pow(dz,2));
+	    dx2=Ux[i-1]-Vx[i-1];
+	    dy2=Uy[i-1]-Vy[i-1];
+	    dz2=Uz[i-1]-Vz[i-1];
+	    r2=sqrt((dx2,2)+pow(dy2,2)+pow(dz2,2));	
+	    dx3=Ux[i-1]-Max[i-1];
+	    dy3=Uy[i-1]-May[i-1];
+	    dz3=Uz[i-1]-Maz[i-1];
+	    r3=sqrt((dx3,2)+pow(dy3,2)+pow(dz3,2));	
+	    dx4=Ux[i-1]-Nx[i-1];
+	    dy4=Uy[i-1]-Ny[i-1];
+	    dz4=Uz[i-1]-Nz[i-1];
+	    r4=sqrt((dx4,2)+pow(dy4,2)+pow(dz4,2));
+	    dx5=Ux[i-1]-Tx[i-1];
+	    dy5=Uy[i-1]-Ty[i-1];
+	    dz5=Uz[i-1]-Tz[i-1];
+	    r5=sqrt((dx5,2)+pow(dy5,2)+pow(dz5,2));	
+	    dx6=Ux[i-1]-Sx[i-1];
+	    dy6=Uy[i-1]-Sy[i-1];
+	    dz6=Uz[i-1]-Sz[i-1];
+	    r6=sqrt((dx6,2)+pow(dy6,2)+pow(dz6,2));
+	    dx7=Ux[i-1]-Px[i-1];
+	    dy7=Uy[i-1]-Py[i-1];
+	    dz7=Uz[i-1]-Pz[i-1];
+	    r7=sqrt((dx7,2)+pow(dy7,2)+pow(dz7,2));
+	    dx8=Ux[i-1]-Mx[i-1];
+	    dy8=Uy[i-1]-My[i-1];
+	    dz8=Uz[i-1]-Mz[i-1];
+	    r8=sqrt((dx8,2)+pow(dy8,2)+pow(dz8,2));
+
+	    F=G*((1/(pow(r1,3)))+(1/(pow(r2,3)))+(1/(pow(r3,3)))+(1/(pow(r4,3)))+(1/(pow(r5,3)))+(1/(pow(r6,3)))+(1/(pow(r7,3)))+(1/(pow(r8,3))));   
+	    Ux[i]=Ux[i-1]+(Uvx[i-1]*Uh)+(1/2*F*(pow(Uh,2)));
+	    Uy[i]=Uy[i-1]+(Uvy[i-1]*Uh)+(1/2*F*(pow(Uh,2)));
+	    Uz[i]=Uz[i-1]+(Uvz[i-1]*Uh)+(1/2*F*(pow(Uh,2)));
+	    Uvx[i]=Uvx[i-1]+((1/2)*(Uh*(F*1+F*Uh)));
+	    Uvy[i]=Uvy[i-1]+((1/2)*(Uh*(F*1+F*Uh)));
+	    Uvz[i]=Uvz[i-1]+((1/2)*(Uh*(F*1+F*Uh)));
+
+	    fprintf(resultados," %lf\t %lf\t %lf \n ",Ux[i],Uy[i],Uz[i]);
+	}
+	    fclose(resultados);
+	
+
+	
+
+	resultados=fopen("resultadosmercurio.txt","w"); 
+		for(i=1;i<=10000;i++) 
+	{	
+	    dx=Mx[i-1]-Jx[i-1];
+	    dy=My[i-1]-Jy[i-1];
+	    dz=Mz[i-1]-Jz[i-1];
+  	    r1=sqrt((dx,2)+pow(dy,2)+pow(dz,2));
+	    dx2=Mx[i-1]-Vx[i-1];
+	    dy2=My[i-1]-Vy[i-1];
+	    dz2=Mz[i-1]-Vz[i-1];
+	    r2=sqrt((dx2,2)+pow(dy2,2)+pow(dz2,2));	
+	    dx3=Mx[i-1]-Max[i-1];
+	    dy3=My[i-1]-May[i-1];
+	    dz3=Mz[i-1]-Maz[i-1];
+	    r3=sqrt((dx3,2)+pow(dy3,2)+pow(dz3,2));	
+	    dx4=Mx[i-1]-Nx[i-1];
+	    dy4=My[i-1]-Ny[i-1];
+	    dz4=Mz[i-1]-Nz[i-1];
+	    r4=sqrt((dx4,2)+pow(dy4,2)+pow(dz4,2));
+	    dx5=Mx[i-1]-Tx[i-1];
+	    dy5=My[i-1]-Ty[i-1];
+	    dz5=Mz[i-1]-Tz[i-1];
+	    r5=sqrt((dx5,2)+pow(dy5,2)+pow(dz5,2));	
+	    dx6=Mx[i-1]-Sx[i-1];
+	    dy6=My[i-1]-Sy[i-1];
+	    dz6=Mz[i-1]-Sz[i-1];
+	    r6=sqrt((dx6,2)+pow(dy6,2)+pow(dz6,2));
+	    dx7=Mx[i-1]-Ux[i-1];
+	    dy7=My[i-1]-Uy[i-1];
+	    dz7=Mz[i-1]-Uz[i-1];
+	    r7=sqrt((dx7,2)+pow(dy7,2)+pow(dz7,2));
+	    dx8=Mx[i-1]-Px[i-1];
+	    dy8=My[i-1]-Py[i-1];
+	    dz8=Mz[i-1]-Pz[i-1];
+	    r8=sqrt((dx8,2)+pow(dy8,2)+pow(dz8,2));
+
+	    F=G*((1/(pow(r1,3)))+(1/(pow(r2,3)))+(1/(pow(r3,3)))+(1/(pow(r4,3)))+(1/(pow(r5,3)))+(1/(pow(r6,3)))+(1/(pow(r7,3)))+(1/(pow(r8,3))));   
+	    Mx[i]=Mx[i-1]+(Mvx[i-1]*Mh)+(1/2*F*(pow(Mh,2)));
+	    My[i]=My[i-1]+(Mvy[i-1]*Mh)+(1/2*F*(pow(Mh,2)));
+	    Mz[i]=Mz[i-1]+(Mvz[i-1]*Mh)+(1/2*F*(pow(Mh,2)));
+	    Mvx[i]=Mvx[i-1]+((1/2)*(Mh*(F*1+F*Mh)));
+	    Mvy[i]=Mvy[i-1]+((1/2)*(Mh*(F*1+F*Mh)));
+	    Mvz[i]=Mvz[i-1]+((1/2)*(Mh*(F*1+F*Mh)));
+
+	    fprintf(resultados," %lf\t %lf\t %lf \n ",Mx[i],My[i],Mz[i]);
+	}
+	    fclose(resultados);
+	
+
 	
 
 
