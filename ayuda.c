@@ -7,37 +7,91 @@
 void proyecto()
 {
 
-float G=430000,h,F;
-int n=10000,i,o;
-double a,b,c,d,e,f;
-double dx,dy,dz,dx2,dy2,dz2,dx3,dy3,dz3,dx4,dy4,dz4,dx5,dy5,dz5,dx6,dy6,dz6,dx7,dy7,dz7,dx8,dy8,dz8;
-double r1,r2,r3,r4,r5,r6,r7,r8;
-double Jx[n],Jy[n],Jz[n],Jvx[n],Jvy[n],Jvz[n],Jh,N[n],P[n];
-double Tx[n],Ty[n],Tz[n],Tvx[n],Tvy[n],Tvz[n],Th;
-double Vx[n],Vy[n],Vz[n],Vvx[n],Vvy[n],Vvz[n],Vh;
-double Max[n],May[n],Maz[n],Mavx[n],Mavy[n],Mavz[n],Mah;
-double Nx[n],Ny[n],Nz[n],Nvx[n],Nvy[n],Nvz[n],Nh;
-double Px[n],Py[n],Pz[n],Pvx[n],Pvy[n],Pvz[n],Ph;
-double Sx[n],Sy[n],Sz[n],Svx[n],Svy[n],Svz[n],Sh;
-double Ux[n],Uy[n],Uz[n],Uvx[n],Uvy[n],Uvz[n],Uh;
-double Mx[n],My[n],Mz[n],Mvx[n],Mvy[n],Mvz[n],Mh;
+float G=430000,h0,m=1;
+int n,c,i,j,t,tf=10;
+float x0,y0,z0,vx0,vy0,vz0;
+char name[100];
 FILE *planeta;
 FILE *resultados;
 
 printf("Hola, este programa calcula la orbita de diferentes planetas entorno al sol\n");
-	planeta=fopen("jupiter.txt","r"); 
-	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
-	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);//se guardan los datos en las variables
-	fclose(planeta);
-	Jx[0]=a;
-	Jy[0]=b;
-	Jz[0]=c;
-	Jvx[0]=d;
-	Jvy[0]=e;
-	Jvz[0]=f;
-	Jh=h;
+printf("Escribe el numero de planetas que quieres: \n");
+scanf("%i",&n);
 
-	planeta=fopen("tierra.txt","r"); 
+
+float h[n],x[n],y[n],z[n],rx[n],ry[n],rz[n],vx[n],vy[n],vz[n],fx[n],fy[n],fz[n];
+
+	planeta=fopen("iniciales.txt","r");
+	for(j=0;j<n;j++){ 
+	fscanf(planeta,"%f %f %f %f %f %f %f",&x0,&y0,&z0,&vx0,&vy0,&vz0,&h0); //leer los datos del documento con terminacion .txt--------------escribir el tiempo y la masa de los planetas que es 1
+//	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",x0,y0,z0,vx0,vy0,vz0,h0);//se guardan los datos en las variables
+	x[j]=x0;
+	y[j]=y0;
+	z[j]=z0;
+	vx[j]=vx0;
+	vy[j]=vy0;
+	vz[j]=vz0;
+	h[j]=h0;
+	printf("x %f\t y %f\t z %f\t vx %f\t vy %f\t vz %f\t h %f\n",x[j],y[j],z[j],vx[j],vy[j],vz[j],h[j]);
+
+
+
+}
+fclose(planeta);
+	for(i=0;i<n;i++){
+		fx[i]=0;
+		fy[i]=0;
+		fz[i]=0;
+		}
+
+
+
+printf("Escribe el nombre del archivo donde se guardaran los nuevos datos, (debe de terminar en '.txt')\n");
+scanf("%s",name);
+resultados=fopen(name,"w");//se crea archivo
+
+	for(t=1;t<tf;t++){
+		printf("El tiempo es de %d\n",t);
+		fprintf(resultados,"Iteracion no.:%d\n",t);
+		fprintf(resultados,"x\t y\t z\n");
+		for(j=0;j<n;j++){
+			for(i=0;i<n;i++){
+				if(i!=j){
+				//DISTANCIA ENTRE PLANETAS
+				printf("i=%d\tj=%d\n",i,j);
+				rx[j]=sqrt(pow(fabs(x[j]-x[i]),2));
+				ry[j]=sqrt(pow(fabs(y[j]-y[i]),2));
+				rz[j]=sqrt(pow(fabs(z[j]-z[i]),2));
+				printf("fx=%f\t G=%f\t m1=%f\t m2=%f\n",fx[j],G,m,m);
+				//FUERZA
+				fx[j]=fx[j]+G*(m*m)/rx[j];
+				fy[j]=fy[j]+G*(m*m)/ry[j];
+				fz[j]=fz[j]+G*(m*m)/rz[j];
+			
+				printf("rx %f\t ry %f\t rz %f\n",rx[j],ry[j],rz[j]);
+				printf("fx %f\t fy %f\t fz %f\n",fx[i],fy[i],fz[i]);
+				//POSICIONES
+			
+			
+			
+				}
+				x[j]=x[j]+(vx[j]*h[j])+(0.5*fx[j]*pow(h[j],2));
+				y[j]=y[j]+(vy[j]*h[j])+(0.5*fy[j]*pow(h[j],2));
+				z[j]=z[j]+(vz[j]*h[j])+(0.5*fz[j]*pow(h[j],2));
+				h[j]++;
+		}
+	printf("nueva posicion del planeta\n");	
+//	printf("x %f\t y %f\t z %f\n",x[j],y[j],z[j]);
+	fprintf(resultados,"%f\t %f\t %f\n",x[j],y[j],z[j]);
+	printf("fin\n");
+	}
+}
+
+fclose(resultados);
+//	return 0;
+
+
+/*	planeta=fopen("","r"); 
 	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
 	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);//se guardan los datos en las variables
 	fclose(planeta);
@@ -586,6 +640,6 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	    fclose(resultados);
 	
 
-
+*/
 }
 // termina el programa
