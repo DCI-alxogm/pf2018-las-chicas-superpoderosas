@@ -130,7 +130,7 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	Mh=h;
 
 	resultados=fopen("resultadosjupiterchidos.txt","w"); 
-		for(i=1;i<=10000;i++) 
+		for(i=1;i<=n;i++) 
 	{	
 
 	   
