@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<math.h>
-#include<stdlib.h>
+#include "main.h"
+#include<stdio.h>
+
 
 void proyecto()
 {
@@ -10,21 +12,21 @@ int n=10000,i,o;
 double a,b,c,d,e,f;
 double dx,dy,dz,dx2,dy2,dz2,dx3,dy3,dz3,dx4,dy4,dz4,dx5,dy5,dz5,dx6,dy6,dz6,dx7,dy7,dz7,dx8,dy8,dz8;
 double r1,r2,r3,r4,r5,r6,r7,r8;
-double Jx[n],Jy[n],Jz[n],Jvx[n],Jvy[n],Jvz[n],Jh[n],N[n],P[n];
-double Tx[n],Ty[n],Tz[n],Tvx[n],Tvy[n],Tvz[n],Th[n];
-double Vx[n],Vy[n],Vz[n],Vvx[n],Vvy[n],Vvz[n],Vh[n];
-double Max[n],May[n],Maz[n],Mavx[n],Mavy[n],Mavz[n],Mah[n];
-double Nx[n],Ny[n],Nz[n],Nvx[n],Nvy[n],Nvz[n],Nh[n];
-double Px[n],Py[n],Pz[n],Pvx[n],Pvy[n],Pvz[n],Ph[n];
-double Sx[n],Sy[n],Sz[n],Svx[n],Svy[n],Svz[n],Sh[n];
-double Ux[n],Uy[n],Uz[n],Uvx[n],Uvy[n],Uvz[n],Uh[n];
-double Mx[n],My[n],Mz[n],Mvx[n],Mvy[n],Mvz[n],Mh[n];
+double Jx[n],Jy[n],Jz[n],Jvx[n],Jvy[n],Jvz[n],Jh,N[n],P[n];
+double Tx[n],Ty[n],Tz[n],Tvx[n],Tvy[n],Tvz[n],Th;
+double Vx[n],Vy[n],Vz[n],Vvx[n],Vvy[n],Vvz[n],Vh;
+double Max[n],May[n],Maz[n],Mavx[n],Mavy[n],Mavz[n],Mah;
+double Nx[n],Ny[n],Nz[n],Nvx[n],Nvy[n],Nvz[n],Nh;
+double Px[n],Py[n],Pz[n],Pvx[n],Pvy[n],Pvz[n],Ph;
+double Sx[n],Sy[n],Sz[n],Svx[n],Svy[n],Svz[n],Sh;
+double Ux[n],Uy[n],Uz[n],Uvx[n],Uvy[n],Uvz[n],Uh;
+double Mx[n],My[n],Mz[n],Mvx[n],Mvy[n],Mvz[n],Mh;
 FILE *planeta;
 FILE *resultados;
 
 printf("Hola, este programa calcula la orbita de diferentes planetas entorno al sol\n");
 	planeta=fopen("jupiter.txt","r"); 
-	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
+	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
 	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);//se guardan los datos en las variables
 	fclose(planeta);
 	Jx[0]=a;
@@ -36,7 +38,7 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	Jh=h;
 
 	planeta=fopen("tierra.txt","r"); 
-	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
+	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
 	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);//se guardan los datos en las variables
 	fclose(planeta);
 	Tx[0]=a;
@@ -48,7 +50,7 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	Th=h;
 	
 	planeta=fopen("venus.txt","r"); 
-	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
+	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
 	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);//se guardan los datos en las variables
 	fclose(planeta);
 	Vx[0]=a;
@@ -60,7 +62,7 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	Vh=h;
 	
 	planeta=fopen("marte.txt","r"); 
-	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
+	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
 	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);//se guardan los datos en las variables
 	fclose(planeta);
 	Max[0]=a;
@@ -72,7 +74,7 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	Mah=h;
 
 	planeta=fopen("neptuno.txt","r"); 
-	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
+	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
 	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);//se guardan los datos en las variables
 	fclose(planeta);
 	Nx[0]=a;
@@ -84,7 +86,7 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	Nh=h;
 
 	planeta=fopen("pluton.txt","r"); 
-	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
+	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
 	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);//se guardan los datos en las variables
 	fclose(planeta);
 	Px[0]=a;
@@ -96,7 +98,7 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	Ph=h;
 
 	planeta=fopen("saturno.txt","r"); 
-	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
+	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
 	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);//se guardan los datos en las variables
 	fclose(planeta);
 	Sx[0]=a;
@@ -108,7 +110,7 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	Sh=h;
 
 	planeta=fopen("urano.txt","r"); 
-	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
+	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
 	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);//se guardan los datos en las variables
 	fclose(planeta);
 	Ux[0]=a;
@@ -120,7 +122,7 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	Uh=h;
 
 	planeta=fopen("mercurio.txt","r"); 
-	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f %i",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
+	fscanf(planeta,"%lf %lf %lf %lf %lf %lf %f ",&a,&b,&c,&d,&e,&f,&h); //leer los datos del documento con terminacion .txt
 	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",a,b,c,d,e,f,h);//se guardan los datos en las variables
 	fclose(planeta);
 	Mx[0]=a;
@@ -582,8 +584,6 @@ printf("Hola, este programa calcula la orbita de diferentes planetas entorno al 
 	    fprintf(resultados," %lf\t %lf\t %lf \n ",Mx[i],My[i],Mz[i]);
 	}
 	    fclose(resultados);
-	
-
 	
 
 
