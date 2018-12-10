@@ -20,7 +20,7 @@
 	solar(Mercurio, Venus, Tierra, Marte, Jupiter, 
 	Saturno, Urano, Neptuno, Pluton).Cada planeta se 
 	ve afectado por las fuerzas gravitacionales de los
-	demas planetas, para facilitar los calculos de 
+	demas planetas, para facilitar los cálculos de 
 	las fuerzas se tomaron las masas de todos los planetas
 	como 1, de esta forma la fórmula de gravitación 
 	universal queda de la siguiente forma:
@@ -28,17 +28,25 @@
 	Las unidades que se usan para las distancias son 
 	kpc(kiloparsec) es una medida astronómica que es igual
 	a 3262 años luz.
-	Se creo un archivo con las posiciones y las
-	velocidades iniciales de cada planetas, apartir de 
-	estos datos es que se empezaron a hacer los calculos 
-	para conocer las trayectorias de los planetas.Para 
-	el cambio de las posiciones y velocidades se uso el
+	Se creó un archivo con las posiciones y las
+	velocidades iniciales de cada planetas, de igual manera
+	dentro del archivo incluia h, que es una fraccion del tiempo,
+	en el cual los planetas se van moviendo para
+	poder completar el tiempo t. Gracias a estos datos 
+	es que se empezó a obtener los cálculos para conocer las
+	 trayectorias de los planetas.
+	Para el cambio de las posiciones y velocidades se uso el
 	método de Leap-frog que sigue la siguiente regla:
 		x(t+h)=x(t)+h*vx(t)+1/2*F*h²
 		vx(t+h)=vx(t)+1/2*(F(t)+F(t+h))*h
-	Estas fórmulas son usadas para los x,y,z y para vx,vy,vz
-	donde h y t son saltos de tiempo, x posicion, vx velocidad
+	Estas fórmulas son usadas para las posiciones en los ejes
+	 x,y,z y para las velocidades, de igual manera en vx,vy,vz
+	donde h y t son saltos de tiempo, x posición, vx velocidad
 	y F fuerza gravitacional.
-	Las graficas se hicieron en python por la facilidad que
-	ofrece para los graficos y la animación con una herramienta
-	que se puede encontrar en el siguiente link: " ".
+	Se obtuvieron varias iteraciones que son los pasos de los planetas
+	respecto al tiempo, con estos pasos se obtuvieron diversas gráficas que 
+	muestran el movimiento realizado.
+	Las gráficas se hicieron en python, en jupyther notebook, por la facilidad que
+	ofrece para los gráficos y animación con una herramienta
+	que se puede encontrar en el siguiente link: " "
+
