@@ -8,8 +8,8 @@
 	INTEGRANTES:   
 	-Diego Ruiz Esparza Flores
 	-Elizabeth Mercado Ruiz
-	Montserrat Montes Cruz
-	María José Cisneros
+	Montserrat Cruz Aguilar
+	María José Cisneros Alvarez
 
 	Este programa calcula los movimientos de los planetas
 	y sus  orbitas de acuerdo a la fuerza que ejercen 
