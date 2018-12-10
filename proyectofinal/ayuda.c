@@ -6,33 +6,34 @@
 
 void proyecto()
 {
-
+//Se definen las variables que se van a utilizar durante el programa
 float G=430000,h0,m=1;
-int n,c,i,j,t,tf=10;
+int n,c,i,j,t,tf;
 float x0,y0,z0,vx0,vy0,vz0;
 char name[100];
 FILE *planeta;
 FILE *resultados;
-
-printf("Hola, este programa calcula la orbita de diferentes planetas entorno al sol\n");
-printf("Escribe el numero de planetas que quieres: \n");
+//se 
+printf("Hola, este programa calcula los movimientos de los planetas entorno al sol y a las fuerzas que ejercen entre ellos\n");
+printf("Escribe el número de planetas que quieres: \n");
 scanf("%i",&n);
+printf("Escribe el número de iteraciones que quieres que se realice\n");//se pide el número de iteraciones que se van a realizar que son la cantidad de pasos que daran los planetas.
+scanf("%i",&tf);
 
+float h[n],x[n],y[n],z[n],rx[n],ry[n],rz[n],vx[n],vy[n],vz[n],fx[n],fy[n],fz[n]; //se declaran las variables donde se ira guardando la informacion de las nuevas posiciones, velocidades y fuerzas.
 
-float h[n],x[n],y[n],z[n],rx[n],ry[n],rz[n],vx[n],vy[n],vz[n],fx[n],fy[n],fz[n];
-
-	planeta=fopen("iniciales.txt","r");
+	planeta=fopen("iniciales.txt","r");//se abre el archivo de lectura con los datos iniciales de los planetas (posiciones en x,y,z y velocidades en x,y,z)
 	for(j=0;j<n;j++){ 
 	fscanf(planeta,"%f %f %f %f %f %f %f",&x0,&y0,&z0,&vx0,&vy0,&vz0,&h0); //leer los datos del documento con terminacion .txt--------------escribir el tiempo y la masa de los planetas que es 1
 //	printf("Prueba datos iniciales %lf\t %lf\t %lf\t %lf\t %lf\t %lf\t %f\t  \n",x0,y0,z0,vx0,vy0,vz0,h0);//se guardan los datos en las variables
 	x[j]=x0;
-	y[j]=y0;
+	y[j]=y0;//-------------------------------Se indica que los valores escaneados son los valores iniciales 
 	z[j]=z0;
 	vx[j]=vx0;
 	vy[j]=vy0;
 	vz[j]=vz0;
 	h[j]=h0;
-	printf("x %f\t y %f\t z %f\t vx %f\t vy %f\t vz %f\t h %f\n",x[j],y[j],z[j],vx[j],vy[j],vz[j],h[j]);
+	printf("x %f\t y %f\t z %f\t vx %f\t vy %f\t vz %f\t h %f\n",x[j],y[j],z[j],vx[j],vy[j],vz[j],h[j]); // se realiza un aprieba
 
 
 
