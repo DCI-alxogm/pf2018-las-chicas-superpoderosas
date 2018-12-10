@@ -3,14 +3,20 @@
 	 División de ciencias en ingenierias
 	     Simulación cosmológica
 		09/Diciembre/2018
-	    
-	Diego Ruiz Esparza Flores
-	Elizabeth Mercado Ruiz
-	Montserat Montes Cruz
+	 
+
+	INTEGRANTES:   
+	-Diego Ruiz Esparza Flores
+	-Elizabeth Mercado Ruiz
+	Montserrat Montes Cruz
 	María José Cisneros
 
-	Este programa calcula las diferentes orbitas de
-	los planetas que se encuentran en nuestro sistema 
+	Este programa calcula los movimientos de los planetas
+	y sus  orbitas de acuerdo a la fuerza que ejercen 
+	entre si, en este caso la constante de gravedad universal
+	(G) fue tomada con el valor de 4300;
+	tiempo tomado en cuenta fue de 10 Gigaaños. 	 
+	Los planetas que se encuentran en nuestro sistema 
 	solar(Mercurio, Venus, Tierra, Marte, Jupiter, 
 	Saturno, Urano, Neptuno, Pluton).Cada planeta se 
 	ve afectado por las fuerzas gravitacionales de los
@@ -30,7 +36,7 @@
 	método de Leap-frog que sigue la siguiente regla:
 		x(t+h)=x(t)+h*vx(t)+1/2*F*h²
 		vx(t+h)=vx(t)+1/2*(F(t)+F(t+h))*h
-	Estas formulas son usadas para los x,y,z y para vx,vy,vz
+	Estas fórmulas son usadas para los x,y,z y para vx,vy,vz
 	donde h y t son saltos de tiempo, x posicion, vx velocidad
 	y F fuerza gravitacional.
 	Las graficas se hicieron en python por la facilidad que
