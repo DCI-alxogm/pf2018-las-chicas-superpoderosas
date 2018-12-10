@@ -15,7 +15,7 @@ FILE *planeta;
 FILE *resultados;
 //se 
 printf("Hola, este programa calcula los movimientos de los planetas entorno al sol y a las fuerzas que ejercen entre ellos\n");
-printf("Escribe el número de planetas que quieres: \n");
+printf("Escribe el número de planetas que quieres: \n");//se escribe el número de planetas que se van a utiliza
 scanf("%i",&n);
 printf("Escribe el número de iteraciones que quieres que se realice\n");//se pide el número de iteraciones que se van a realizar que son la cantidad de pasos que daran los planetas.
 scanf("%i",&tf);
@@ -38,57 +38,57 @@ float h[n],x[n],y[n],z[n],rx[n],ry[n],rz[n],vx[n],vy[n],vz[n],fx[n],fy[n],fz[n];
 
 
 }
-fclose(planeta);
+fclose(planeta);//se cierra el archivo de lectura
 	for(i=0;i<n;i++){
-		fx[i]=0;
+		fx[i]=0;//-------------------se indica que la sumatoria de las fuerzas en los distintos ejes es igual a 0.
 		fy[i]=0;
 		fz[i]=0;
 		}
 
 
 
-printf("Escribe el nombre del archivo donde se guardaran los nuevos datos, (debe de terminar en '.txt')\n");
+printf("Escribe el nombre del archivo donde se guardaran los nuevos datos, (debe de terminar en '.txt')\n");//se pide el nombre del archivo donde se van a guardar las nuevas posiciones.
 scanf("%s",name);
 resultados=fopen(name,"w");//se crea archivo
 
 	for(t=1;t<tf;t++){
-		printf("El tiempo es de %d\n",t);
+		printf("El tiempo es de %d\n",t); //se indican los valores del tiempo y de las iteraciones realizadas
 		fprintf(resultados,"Iteracion no.:%d\n",t);
 		fprintf(resultados,"x\t y\t z\n");
-		for(j=0;j<n;j++){
+		for(j=0;j<n;j++){ //ciclos anidados
 			for(i=0;i<n;i++){
 				if(i!=j){
 				//DISTANCIA ENTRE PLANETAS
 				printf("i=%d\tj=%d\n",i,j);
 				rx[j]=sqrt(pow(fabs(x[j]-x[i]),2));
-				ry[j]=sqrt(pow(fabs(y[j]-y[i]),2));
+				ry[j]=sqrt(pow(fabs(y[j]-y[i]),2));//-----------------operaciones de las distancias entre los planetas
 				rz[j]=sqrt(pow(fabs(z[j]-z[i]),2));
 				printf("fx=%f\t G=%f\t m1=%f\t m2=%f\n",fx[j],G,m,m);
 				//FUERZA
 				fx[j]=fx[j]+G*(m*m)/rx[j];
-				fy[j]=fy[j]+G*(m*m)/ry[j];
+				fy[j]=fy[j]+G*(m*m)/ry[j];//---------------------operaciones para calcular las fuerzas 
 				fz[j]=fz[j]+G*(m*m)/rz[j];
 			
-				printf("rx %f\t ry %f\t rz %f\n",rx[j],ry[j],rz[j]);
-				printf("fx %f\t fy %f\t fz %f\n",fx[i],fy[i],fz[i]);
+				printf("rx %f\t ry %f\t rz %f\n",rx[j],ry[j],rz[j]);//se imprimen las distancias entre los planetas
+				printf("fx %f\t fy %f\t fz %f\n",fx[i],fy[i],fz[i]);//se imprimen las fuerzas 
 				//POSICIONES
 			
 			
 			
 				}
 				x[j]=x[j]+(vx[j]*h[j])+(0.5*fx[j]*pow(h[j],2));
-				y[j]=y[j]+(vy[j]*h[j])+(0.5*fy[j]*pow(h[j],2));
+				y[j]=y[j]+(vy[j]*h[j])+(0.5*fy[j]*pow(h[j],2));//---------------operaciones para las nuevas distancias
 				z[j]=z[j]+(vz[j]*h[j])+(0.5*fz[j]*pow(h[j],2));
 				h[j]++;
 		}
 	printf("nueva posicion del planeta\n");	
 //	printf("x %f\t y %f\t z %f\n",x[j],y[j],z[j]);
-	fprintf(resultados,"%f\t %f\t %f\n",x[j],y[j],z[j]);
+	fprintf(resultados,"%f\t %f\t %f\n",x[j],y[j],z[j]);//se imprimen los resultados obtenidos dentro del nuevo archivo creado 
 	printf("fin\n");
 	}
 }
 
-fclose(resultados);
+fclose(resultados);// se cierra el archivo de resultados 
 //	return 0;
 
 
